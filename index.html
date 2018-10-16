@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Word Guess Game</title>
+</head>
+<body>
+    
+<!-- 
+cosmetic- after the javascript
+View of page
+background
+space for guessed letters
+Wins
+Guesses remaining
+Losses
+
+Javascript
+Define array of kids names
+Pick random number (random kid name)
+
+get length of name (lengthofName)
+display "_" for each letter (create an array for this- underscore array)
+tracking array =0
+
+On key event circle(loop) through the array name to find the matching letter
+if there is a match reveal letter instead of "_" and (increase the tracking array)
+elseif display in space for guessed letters
+-1 guesses remaining
+
+Check guesses remaining to see if losses increments 
+once tracking array equals underscore then user wins
+
+start new name-create reset function to grab a new name
+reset guesses remaining (keep losses and wins tally)
+-->
+
+<div class="container">
+    <div class="instructions">Press any key to Start</div>
+    <div class="wins">Wins</div>
+    <div class="losses">Losses</div>
+    <div class="guess">Guesses Remaining</div>
+    <div class="wordToGuess">Place Name here</div>
+    <div class ="game" id="game">GAME</div>
+
+   </div>
+
+   <div class="blanks" id="Display-Blanks">displayblanks</div>
+
+
+   
+   <script src="assets/javascript/game1.js" type="text/javascript"></script>
+</body>
+
+</html>
