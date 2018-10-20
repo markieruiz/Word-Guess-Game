@@ -1,68 +1,105 @@
+var $resetGameButton = document.getElementById('resetGameButton');
+var $mysteryWord = document.getElementById('mysteryWord');
+var $guessedLetters = document.getElementById('guessedLetters');
+var $guessesLeft = document.getElementById('guessesLeft');
+var $wins = document.getElementById('wins');
+var $losses = document.getElementById('losses');
+
+var randomArr = ['Victoria','Manuel','Gabriella','Michael','Francisco','Sergio','Akira'];
+var wins = 0;
+var losses = 0;
+var guessesLeft = 0;
+var gameRunning = false;
+var mysteryWord = randomArr[Math.floor(Math.random() * randomArr.length)];
+var wordArr = [];
+var letterArr = [];
+var wrongLetterArr = [];
+var output= '';
 
 
-// <!--Javascript
-// Define array of kids names
-// Pick random number (random kid name)
-
-// get length of name (lengthofName)
-// display "_" for each letter (create an array for this- underscore array)
-// tracking array =0
-
-// On key event circle(loop) through the array name to find the matching letter
-// if there is a match reveal letter instead of "_" and (increase the tracking array)
-// elseif display in space for guessed letters
-// -1 guesses remaining
-
-// Check guesses remaining to see if losses increments 
-// once tracking array equals underscore then user wins
-
-// start new name-create reset function to grab a new name
-// reset guesses remaining (keep losses and wins tally)
-// -->
-
-var $ = function (id) {
-    return document.getElementById(id)
+function resetGameButton () {
+    gameRunning = true;
+    guessesLeft = 10;
+    letterArr = [];
+    wrongLetterArr = [];
+    wordArr = [];
+    
+    {
+        for (var i = 0; i < mysteryWord.length; i++) {
+            wordArr[i] = "_ ";
+          output = output + wordArr[i];
+        }
+    }
+    $mysteryWord.textContent = wordArr.join('');
+    $guessesLeft.textContent = guessesLeft;
+    $guessedLetters.textContent = wrongLetterArr;
 }
 
-var kidsNames= ["Victoria","Manuel","Gabriella","Michael","Francisco","Sergio","Akira"]
+function letterGuess(letter) {
+    // if (gameRunning = false); {
+    //     resetGameButton();
+    //     gameRunning = true;
+    // }
+    
+    if (letterArr.indexOf(letter) === -1) {
+        letterArr.push(letter);
 
-var word = kidsNames[Math.floor(Math.random() * kidsNames.length)]
-console.log("Random Name Generated : " + word );
+    for (var i = 0; i < mysteryWord.length; i++) {
+        if (mysteryWord[i].toLowerCase() === letter.toLowerCase()) {
+            wordArr[i] = mysteryWord[i];
+        }
+    }
+    $mysteryWord.textContent = wordArr.join('');
 
-var num = word.length
-console.log(num);
-
-var letters = word.length;
-var hidden = word.length;
-var display = [letters];
-var output = "";
-var answer = kidsNames[word];
-var blankSpaces = [];
-
-function blank(word) {
-    blankSpaces = [];
-    for (var i = 0; i < word.length; i++) {
-      // - parse the word into blanks
-      if (word[i] === " ") {
-        blankSpaces.push(" ");
-      } else {
-        blankSpaces.push("_");
-      }
+    checkIncorrect(letter);
+    checkLoss(mysteryWord);
     }
 
-   
+    else {
+            alert("You've already guessed this letter. Try a new one.")
+            }
 }
-console.log(blankSpaces)
-  
+       
+function checkIncorrect(letter) {
 
+        if (wordArr.indexOf(letter.toLowerCase()) === -1
+        && wordArr.indexOf(letter.toUpperCase()) === -1
+        )  {
+            guessesLeft--;
+            letter = (letter.toUpperCase());
+            wrongLetterArr.push(letter);          
+            $guessedLetters.textContent = wrongLetterArr.join(' ');
+            $guessesLeft.textContent = guessesLeft;            
+        }
+    }
 
+function checkLoss(mysteryWord) {
+    if (guessesLeft === 0 ) {
+        losses++;
+        gameRunning = false;
+        $losses.textContent = losses;
+        $mysteryWord.textContent = mysteryWord;
+        alert("You lose. The word was:, " + mysteryWord +'!');
+        resetGameButton();
+    }
+    checkWin();
+}
 
-    // for (var i=0; i < word.length; i++) 
-    // {   
-    //     display[i] = "_ ";
-    //     output = output + display[i];
-    // }
-    // // document.write= output;
-    // document.getElementById("displayBlanks").innerHTML = output;
-    // output= "";
+function checkWin() {
+    if (mysteryWord.toLowerCase() === wordArr.join('').toLowerCase()) 
+    {
+    wins++;
+    gameRunning = false;
+    $wins.textContent = wins;
+    alert("You won!");
+    resetGameButton();
+    }
+}
+    $resetGameButton.addEventListener('click', resetGameButton)
+
+    document.onkeyup = function(event) {
+        if (event.keyCode >= 65 && event.keyCode <= 90) {
+        letterGuess(event.key);
+        }
+    }
 
