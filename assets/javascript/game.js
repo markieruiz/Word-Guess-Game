@@ -1,4 +1,4 @@
-var $resetGameButton = document.getElementById('resetGameButton');
+var $resetGame = document.getElementById('resetGame');
 var $mysteryWord = document.getElementById('mysteryWord');
 var $guessedLetters = document.getElementById('guessedLetters');
 var $guessesLeft = document.getElementById('guessesLeft');
@@ -16,8 +16,7 @@ var letterArr = [];
 var wrongLetterArr = [];
 var output= '';
 
-
-function resetGameButton () {
+function resetGame () {
     gameRunning = true;
     guessesLeft = 10;
     letterArr = [];
@@ -36,10 +35,6 @@ function resetGameButton () {
 }
 
 function letterGuess(letter) {
-    // if (gameRunning = false); {
-    //     resetGameButton();
-    //     gameRunning = true;
-    // }
     
     if (letterArr.indexOf(letter) === -1) {
         letterArr.push(letter);
@@ -57,7 +52,7 @@ function letterGuess(letter) {
 
     else {
             alert("You've already guessed this letter. Try a new one.")
-            }
+        }
 }
        
 function checkIncorrect(letter) {
@@ -79,27 +74,30 @@ function checkLoss(mysteryWord) {
         gameRunning = false;
         $losses.textContent = losses;
         $mysteryWord.textContent = mysteryWord;
-        alert("You lose. The word was:, " + mysteryWord +'!');
-        resetGameButton();
+        alert("You lose. The word was" + mysteryWord +'!');
+        resetGame();
     }
     checkWin();
 }
 
 function checkWin() {
-    if (mysteryWord.toLowerCase() === wordArr.join('').toLowerCase()) 
-    {
-    wins++;
-    gameRunning = false;
-    $wins.textContent = wins;
-    alert("You won!");
-    resetGameButton();
-    }
-}
-    $resetGameButton.addEventListener('click', resetGameButton)
+    if (mysteryWord.toLowerCase() === wordArr.join('').toLowerCase()) {
+        wins++;
+        gameRunning = false;
+        $wins.textContent = wins;
+        alert("You won!");
+        resetGame();
+        }   
+    }      
+    
+    $resetGame.addEventListener('click', resetGame)
 
     document.onkeyup = function(event) {
         if (event.keyCode >= 65 && event.keyCode <= 90) {
         letterGuess(event.key);
         }
+    }
+    window.onload = function () {
+        resetGame();
     }
 
