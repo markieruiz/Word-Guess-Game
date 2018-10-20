@@ -17,7 +17,6 @@ var wrongLetterArr = [];
 var output= '';
 
 function resetGame () {
-    gameRunning = true;
     guessesLeft = 10;
     letterArr = [];
     wrongLetterArr = [];
@@ -43,58 +42,70 @@ function letterGuess(letter) {
         if (mysteryWord[i].toLowerCase() === letter.toLowerCase()) {
             wordArr[i] = mysteryWord[i];
         }
-    }
-    $mysteryWord.textContent = wordArr.join('');
+        $mysteryWord.textContent = wordArr.join('');
+    } 
+    
+    console.log(wordArr);
 
     checkIncorrect(letter);
-    checkLoss(mysteryWord);
+    
     }
-
     else {
-            alert("You've already guessed this letter. Try a new one.")
-        }
+        alert("You've already guessed this letter. Try a new one.")
+    }
+    checkWin();
+
 }
        
 function checkIncorrect(letter) {
 
-        if (wordArr.indexOf(letter.toLowerCase()) === -1
-        && wordArr.indexOf(letter.toUpperCase()) === -1
-        )  {
-            guessesLeft--;
-            letter = (letter.toUpperCase());
-            wrongLetterArr.push(letter);          
-            $guessedLetters.textContent = wrongLetterArr.join(' ');
-            $guessesLeft.textContent = guessesLeft;            
-        }
+    if (wordArr.indexOf(letter.toLowerCase()) === -1
+    && wordArr.indexOf(letter.toUpperCase()) === -1)  {
+        guessesLeft--;
+        letter = (letter.toUpperCase());
+        wrongLetterArr.push(letter);          
+        $guessedLetters.textContent = wrongLetterArr.join(' ');
+        $guessesLeft.textContent = guessesLeft;            
     }
+    console.log('-',mysteryWord)
+    checkLoss(mysteryWord);
+}
 
 function checkLoss(mysteryWord) {
     if (guessesLeft === 0 ) {
         losses++;
-        gameRunning = false;
         $losses.textContent = losses;
         $mysteryWord.textContent = mysteryWord;
-        alert("You lose. The word was" + mysteryWord +'!');
+        alert("You lose. The word was " + mysteryWord +'!');
         resetGame();
     }
-    checkWin();
 }
 
 function checkWin() {
     if (mysteryWord.toLowerCase() === wordArr.join('').toLowerCase()) {
+        $mysteryWord.textContent = mysteryWord;
         wins++;
-        gameRunning = false;
         $wins.textContent = wins;
-        alert("You won!");
-        resetGame();
-        }   
-    }      
+
+        setTimeout(()=>{
+            alert("you won");        
+            resetGame();
+        },0)
+
+    }   
+}      
     
+
+
     $resetGame.addEventListener('click', resetGame)
 
     document.onkeyup = function(event) {
         if (event.keyCode >= 65 && event.keyCode <= 90) {
-        letterGuess(event.key);
+            letterGuess(event.key);
+        }
+        else {
+            alert("You did not enter a letter. The mystery word does not contain numeric values.")
+            console.log(event.charCode);
         }
     }
     window.onload = function () {
