@@ -27,8 +27,6 @@ function resetGame () {
     wordArr = [];
     mysteryWord = randomArr[Math.floor(Math.random() * randomArr.length)];
     $display.textContent =' ';
-    myMusic = new sound('assets/images/NFL.mp3');
-    myMusic.play();
     console.log(mysteryWord);
 
     {
@@ -84,13 +82,12 @@ function checkLoss(mysteryWord) {
 
 function checkWin() {
     if (mysteryWord.toLowerCase() === wordArr.join('').toLowerCase()) {
+        $.playSound("NFL.mp3");
         $mysteryWord.textContent = mysteryWord;
         wins++;
         $wins.textContent = wins;
-        $.playSound("playSound");
-        myMusic.play();
-
-
+       
+  
         setTimeout(()=>{
             alert("Congratulations! You won!");        
             resetGame();
@@ -116,17 +113,4 @@ window.onload = function () {
     resetGame();
 }
 
-function sound(src) {
-    this.sound = document.createElement("audio");
-    this.sound.src = src;
-    this.sound.setAttribute("preload", "auto");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
-    document.body.appendChild(this.sound);
-    this.play = function(){
-        this.sound.play();
-    }
-    this.stop = function(){
-        this.sound.pause();
-    }
-}
+
