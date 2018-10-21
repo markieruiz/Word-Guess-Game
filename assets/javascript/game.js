@@ -6,7 +6,7 @@ var $wins = document.getElementById('wins');
 var $losses = document.getElementById('losses');
 var $display = document.getElementById('display');
 
-var randomArr = ['SeaHawks','Chargers','Vikings','Dolphins','Giants','Texans','Cowboys'];
+var randomArr = ['SeaHawks','Chargers','Vikings','Dolphins','Giants','Texans','Cowboys','Redskins','Saints'];
 var wins = 0;
 var losses = 0;
 var guessesLeft = 0;
@@ -17,6 +17,7 @@ var letterArr = [];
 var wrongLetterArr = [];
 var output= '';
 var display= '';
+var myMusic;
 
 
 function resetGame () {
@@ -26,6 +27,8 @@ function resetGame () {
     wordArr = [];
     mysteryWord = randomArr[Math.floor(Math.random() * randomArr.length)];
     $display.textContent =' ';
+    myMusic = new sound('assets/images/NFL.mp3');
+    myMusic.play();
     console.log(mysteryWord);
 
     {
@@ -84,6 +87,9 @@ function checkWin() {
         $mysteryWord.textContent = mysteryWord;
         wins++;
         $wins.textContent = wins;
+        $.playSound("playSound");
+        myMusic.play();
+
 
         setTimeout(()=>{
             alert("Congratulations! You won!");        
@@ -94,18 +100,33 @@ function checkWin() {
 
 $resetGame.addEventListener('click', resetGame)
 
-document.onkeyup = function(event) {
+document.onkeydown = function(event) {
+    $.playSound("http://www.noiseaddicts.com/samples_1w72b820/3740.mp3");
+
     if (event.keyCode >= 65 && event.keyCode <= 90) {
             letterGuess(event.key);
-    }
+        }
 
-    else {
-        alert("You did not enter a letter. The mystery word does not contain numeric values.")
+        else {
+            alert("You did not enter a letter. The mystery word does not contain numeric values.")
+        }    
     }
-}
 
 window.onload = function () {
     resetGame();
 }
 
-
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }
+}
