@@ -7,7 +7,7 @@ body {
 
   body {
     /* The background image */
-    background-image: url("../images/rawpixel-792239-unsplash.jpg");
+    background-image: url("../images/b.jpg");
     /* Set a specified height, or the minimum height for the background image */
     min-height: 500px;
     /* Set background image to fixed (don't scroll along with the page) */
@@ -24,34 +24,13 @@ body {
     margin-top: 100px;
 }
 
-  
-   /*
- .bg { 
-    background: url('../images/a.jpg') no-repeat center center fixed; 
-    /* -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover; 
-  }*/
 
-
-/* 
-@keyframes trans {
-    from {background-color: red;}
-    to {background-color: yellow;}
+.navbar-custom  {
+    color: white;
+    display: block;
+    font-size: 32px;
+    background: grey;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
 }
-
-
-.card {
-    background-color: red;
-    animation-name: trans;
-    animation-duration: 4s;
-}
-body {
-    opacity: 1;
-    transition: 1s opacity;
-}
-body.fade-out {
-    opacity: 0;
-    transition: none;
-} */
