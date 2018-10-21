@@ -11,7 +11,8 @@
     <title>It's time for Football</title>
 </head>
 
-<body>     
+<body> 
+<div class="bg">
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark fixed-top" style="background-color: black;">
     <div class="container">
       <a class="navbar-brand" href="#">NFL Football Teams</a>
@@ -29,9 +30,10 @@
     <div class="answers" style="background-image: url('assets/images/pic.png')"></div> -->
   </header> 
 
+
   <div class="container">    
     <h1 class="my-4">Football Teams</h1>
-      <div class="row">
+      <div class="row row-grid">
         <div class="col-lg-6 mb-4">
             <div class="card h-100">
               <h4 class="card-header text-center">Guess this Team</h4>
@@ -52,7 +54,7 @@
   </div>
 
 <div class="container">
-    <div class="row">
+    <div class="row row-grid">
       <div class="col-lg-4 mb-4">
         <div class="card h-100">
           <h4 class="card-header text-center">Remaining Attempts</h4>
@@ -60,7 +62,8 @@
             <p class="card-text text-center"><span id="guessesLeft">0</span></p>
           </div>
         </div>
-      </div>
+        </div>
+
       <div class="col-lg-4 mb-4">
         <div class="card h-100">
           <h4 class="card-header text-center">Wins</h4>
@@ -78,15 +81,17 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
+ 
 
   <div class="container">
-  <div class="row">
+  <div class="row row-grid">
     <div class="col-lg-4 mb-4">
       <button id="resetGame">Reset the Game!</button>
     </div>
   </div>
   </div>
+</div>
 
 </body>
 <script src="assets/javascript/game.js" type="text/javascript"></script>

@@ -1,7 +1,57 @@
 
-    
+
 body {
     padding-top: 54px;
   }
+
+
+  body {
+    /* The background image */
+    background-image: url("../images/rawpixel-792239-unsplash.jpg");
+    /* Set a specified height, or the minimum height for the background image */
+    min-height: 500px;
+    /* Set background image to fixed (don't scroll along with the page) */
+    background-attachment: fixed;
+    /* Center the background image */
+    background-position: center;
+    /* Set the background image to no repeat */
+    background-repeat: no-repeat;
+    /* Scale the background image to be as large as possible */
+    background-size: cover;
+}
+
+.row-grid {
+    margin-top: 100px;
+}
+
   
-  
+   /*
+ .bg { 
+    background: url('../images/a.jpg') no-repeat center center fixed; 
+    /* -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+  }*/
+
+
+/* 
+@keyframes trans {
+    from {background-color: red;}
+    to {background-color: yellow;}
+}
+
+
+.card {
+    background-color: red;
+    animation-name: trans;
+    animation-duration: 4s;
+}
+body {
+    opacity: 1;
+    transition: 1s opacity;
+}
+body.fade-out {
+    opacity: 0;
+    transition: none;
+} */

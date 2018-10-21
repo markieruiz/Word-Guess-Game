@@ -69,11 +69,14 @@ function checkIncorrect(letter) {
 
 function checkLoss(mysteryWord) {
     if (guessesLeft === 0 ) {
+        $mysteryWord.textContent = mysteryWord;
         losses++;
         $losses.textContent = losses;
-        $mysteryWord.textContent = mysteryWord;
-        alert("You lose. The word was " + mysteryWord +'!');
-        resetGame();
+        
+        setTimeout(()=>{
+            alert("you lose");        
+            resetGame();
+        },0)
     }
 }
 
@@ -104,6 +107,7 @@ document.onkeyup = function(event) {
 }
 
 window.onload = function () {
+    $('body').removeClass('fade-out');
     resetGame();
 }
 
