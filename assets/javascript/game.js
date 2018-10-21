@@ -6,17 +6,18 @@ var $wins = document.getElementById('wins');
 var $losses = document.getElementById('losses');
 var $display = document.getElementById('display');
 
-var randomArr = ['Victoria','Manuel','Gabriella','Michael','Francisco','Sergio','Akira'];
+var randomArr = ['SeaHawks','Chargers','Vikings','Dolphins','Giants','Texans','Cowboys'];
 var wins = 0;
 var losses = 0;
 var guessesLeft = 0;
 var gameRunning = false;
-var mysteryWord = randomArr[Math.floor(Math.random() * randomArr.length)];
+var mysteryWord ='';
 var wordArr = [];
 var letterArr = [];
 var wrongLetterArr = [];
 var output= '';
 var display= '';
+
 
 function resetGame () {
     guessesLeft = 10;
@@ -24,7 +25,8 @@ function resetGame () {
     wrongLetterArr = [];
     wordArr = [];
     mysteryWord = randomArr[Math.floor(Math.random() * randomArr.length)];
-    display='';
+    $display.textContent =' ';
+    console.log(mysteryWord);
 
     {
         for (var i = 0; i < mysteryWord.length; i++) {
@@ -47,8 +49,6 @@ function letterGuess(letter) {
             }
         $mysteryWord.textContent = wordArr.join('');
         }    
-    
-    console.log(wordArr);
     checkIncorrect(letter);
     }
 
@@ -72,16 +72,10 @@ function checkIncorrect(letter) {
 
 function checkLoss(mysteryWord) {
     if (guessesLeft === 0 ) {
-        $display.textContent = mysteryWord;
         losses++;
         $losses.textContent = losses;
-
-        //resetGame();
-
-        // setTimeout(()=>{
-        //     alert("you lose");        
-        //     resetGame();
-        // },0)
+        display= "Please reset the game and try again. The team was the " + (mysteryWord.toUpperCase()) + ".";
+        $display.textContent = display;
     }
 }
 
@@ -92,7 +86,7 @@ function checkWin() {
         $wins.textContent = wins;
 
         setTimeout(()=>{
-            alert("you won");        
+            alert("Congratulations! You won!");        
             resetGame();
         },0)
     } 
@@ -107,7 +101,6 @@ document.onkeyup = function(event) {
 
     else {
         alert("You did not enter a letter. The mystery word does not contain numeric values.")
-        console.log(event.charCode);
     }
 }
 

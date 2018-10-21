@@ -1,7 +1,7 @@
 
   body {
     padding-top: 54px;
-    background-image: url("../images/b.jpg");
+    background-image: url("../images/d.jpg");
     min-height: 500px;
     background-attachment: fixed;
     background-position: center;
@@ -13,7 +13,7 @@
 }
 
 .row-grid {
-    margin-top: 100px;
+    margin-top: 75px;
 }
 
 .navbar-custom  {
@@ -45,6 +45,7 @@
 #display {
     background: white;
     color: black;
+  
 }
 
 #resetGame {
