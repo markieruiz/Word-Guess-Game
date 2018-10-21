@@ -1,36 +1,53 @@
 
-
-body {
-    padding-top: 54px;
-  }
-
-
   body {
-    /* The background image */
+    padding-top: 54px;
     background-image: url("../images/b.jpg");
-    /* Set a specified height, or the minimum height for the background image */
     min-height: 500px;
-    /* Set background image to fixed (don't scroll along with the page) */
     background-attachment: fixed;
-    /* Center the background image */
     background-position: center;
-    /* Set the background image to no repeat */
     background-repeat: no-repeat;
-    /* Scale the background image to be as large as possible */
     background-size: cover;
+    font-family: monospace;
+    font-size: 32px;
+    text-align: center;
 }
 
 .row-grid {
     margin-top: 100px;
 }
 
-
 .navbar-custom  {
     color: white;
     display: block;
-    font-size: 32px;
-    background: grey;
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
+    letter-spacing: 15px;
+    line-height: 15px;
+}
+.navbar-brand {
+    font-size: 30px;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+/* #guessedLetters {
+    color: red;
+} */
+
+.card-red {
+    color: red;
+}
+
+#display {
+    background: white;
+    color: black;
+}
+
+#resetGame {
+    font-size: 20px;
+    color: grey;
 }

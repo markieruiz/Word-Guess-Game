@@ -4,6 +4,7 @@ var $guessedLetters = document.getElementById('guessedLetters');
 var $guessesLeft = document.getElementById('guessesLeft');
 var $wins = document.getElementById('wins');
 var $losses = document.getElementById('losses');
+var $display = document.getElementById('display');
 
 var randomArr = ['Victoria','Manuel','Gabriella','Michael','Francisco','Sergio','Akira'];
 var wins = 0;
@@ -15,7 +16,6 @@ var wordArr = [];
 var letterArr = [];
 var wrongLetterArr = [];
 var output= '';
-
 
 function resetGame () {
     guessesLeft = 10;
@@ -107,7 +107,6 @@ document.onkeyup = function(event) {
 }
 
 window.onload = function () {
-    $('body').removeClass('fade-out');
     resetGame();
 }
 
