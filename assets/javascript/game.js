@@ -16,12 +16,13 @@ var letterArr = [];
 var wrongLetterArr = [];
 var output= '';
 
+
 function resetGame () {
     guessesLeft = 10;
     letterArr = [];
     wrongLetterArr = [];
     wordArr = [];
-    
+    mysteryWord = randomArr[Math.floor(Math.random() * randomArr.length)];
     {
         for (var i = 0; i < mysteryWord.length; i++) {
             wordArr[i] = "_ ";
@@ -34,31 +35,27 @@ function resetGame () {
 }
 
 function letterGuess(letter) {
-    
     if (letterArr.indexOf(letter) === -1) {
         letterArr.push(letter);
 
-    for (var i = 0; i < mysteryWord.length; i++) {
-        if (mysteryWord[i].toLowerCase() === letter.toLowerCase()) {
+        for (var i = 0; i < mysteryWord.length; i++) {
+            if (mysteryWord[i].toLowerCase() === letter.toLowerCase()) {
             wordArr[i] = mysteryWord[i];
-        }
+            }
         $mysteryWord.textContent = wordArr.join('');
-    } 
+        }    
     
     console.log(wordArr);
-
     checkIncorrect(letter);
-    
     }
+
     else {
         alert("You've already guessed this letter. Try a new one.")
     }
     checkWin();
-
 }
        
 function checkIncorrect(letter) {
-
     if (wordArr.indexOf(letter.toLowerCase()) === -1
     && wordArr.indexOf(letter.toUpperCase()) === -1)  {
         guessesLeft--;
@@ -67,7 +64,6 @@ function checkIncorrect(letter) {
         $guessedLetters.textContent = wrongLetterArr.join(' ');
         $guessesLeft.textContent = guessesLeft;            
     }
-    console.log('-',mysteryWord)
     checkLoss(mysteryWord);
 }
 
@@ -91,24 +87,24 @@ function checkWin() {
             alert("you won");        
             resetGame();
         },0)
+    } 
+}  
 
-    }   
-}      
-    
+$resetGame.addEventListener('click', resetGame)
 
-
-    $resetGame.addEventListener('click', resetGame)
-
-    document.onkeyup = function(event) {
-        if (event.keyCode >= 65 && event.keyCode <= 90) {
+document.onkeyup = function(event) {
+    if (event.keyCode >= 65 && event.keyCode <= 90) {
             letterGuess(event.key);
-        }
-        else {
-            alert("You did not enter a letter. The mystery word does not contain numeric values.")
-            console.log(event.charCode);
-        }
     }
-    window.onload = function () {
-        resetGame();
+
+    else {
+        alert("You did not enter a letter. The mystery word does not contain numeric values.")
+        console.log(event.charCode);
     }
+}
+
+window.onload = function () {
+    resetGame();
+}
+
 
