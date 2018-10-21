@@ -16,6 +16,7 @@ var wordArr = [];
 var letterArr = [];
 var wrongLetterArr = [];
 var output= '';
+var display= '';
 
 function resetGame () {
     guessesLeft = 10;
@@ -23,6 +24,8 @@ function resetGame () {
     wrongLetterArr = [];
     wordArr = [];
     mysteryWord = randomArr[Math.floor(Math.random() * randomArr.length)];
+    display='';
+
     {
         for (var i = 0; i < mysteryWord.length; i++) {
             wordArr[i] = "_ ";
@@ -31,7 +34,7 @@ function resetGame () {
     }
     $mysteryWord.textContent = wordArr.join('');
     $guessesLeft.textContent = guessesLeft;
-    $guessedLetters.textContent = wrongLetterArr;
+    $guessedLetters.textContent = wrongLetterArr;   
 }
 
 function letterGuess(letter) {
@@ -69,14 +72,16 @@ function checkIncorrect(letter) {
 
 function checkLoss(mysteryWord) {
     if (guessesLeft === 0 ) {
-        $mysteryWord.textContent = mysteryWord;
+        $display.textContent = mysteryWord;
         losses++;
         $losses.textContent = losses;
-        
-        setTimeout(()=>{
-            alert("you lose");        
-            resetGame();
-        },0)
+
+        //resetGame();
+
+        // setTimeout(()=>{
+        //     alert("you lose");        
+        //     resetGame();
+        // },0)
     }
 }
 
